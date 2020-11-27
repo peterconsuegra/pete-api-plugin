@@ -1,0 +1,27 @@
+{
+    "name": "peteconsuegra/pete-api-plugin",
+    "description": "Add demo behavior to Pete",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pedro Consuegra",
+            "email": "software@ozonegroup.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pete\\PeteApi\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "~5"
+    },
+	"extra": {
+	    "laravel": {
+	        "providers": [
+	            "Pete\\PeteApi\\PeteApiServiceProvider"
+	        ]
+	    }
+	}
+}
