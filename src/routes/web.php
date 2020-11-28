@@ -1,5 +1,32 @@
 <?php
 
-
-//Route::get('test_demo', 'Pete\PeteApi\Http\PeteApiController@test_demo');
-Route::get('test_demo', 'Pete\PeteApi\Http\PeteApiController@test_demo')->middleware(['web']);
+Route::post('/apipete/create_new_wordpress', 'Pete\PeteApi\Http\PeteApiController@create_new_wordpress')->middleware(['web']);
+Route::post('/apipete/import_wordpress_theme', 'Pete\PeteApi\Http\PeteApiController@import_wordpress_theme')->middleware(['web']);
+Route::post('/apipete/delete_site', 'Pete\PeteApi\Http\PeteApiController@delete_site')->middleware(['web']);
+Route::post('/apipete/publish_site', 'Pete\PeteApi\Http\PeteApiController@publish_site')->middleware(['web']);
+Route::post('/apipete/reload_pete', 'Pete\PeteApi\Http\PeteApiController@reload_pete')->middleware(['web']);
+Route::post('/apipete/restore_site', 'Pete\PeteApi\Http\PeteApiController@restore_site')->middleware(['web']);
+Route::post('/apipete/destroy_site', 'Pete\PeteApi\Http\PeteApiController@destroy_site')->middleware(['web']);
+Route::post('/apipete/restore_from_backup', 'Pete\PeteApi\Http\PeteApiController@restore_from_backup')->middleware(['web']);
+Route::post('/apipete/suspend_site', 'Pete\PeteApi\Http\PeteApiController@suspend_site')->middleware(['web']);
+Route::post('/apipete/continue_site', 'Pete\PeteApi\Http\PeteApiController@continue_site')->middleware(['web']);
+Route::post('/apipete/mod_site', 'Pete\PeteApi\Http\PeteApiController@mod_site')->middleware(['web']);
+Route::post('/apipete/clone_site', 'Pete\PeteApi\Http\PeteApiController@clone_site')->middleware(['web']);
+Route::post('/apipete/restore_site_from_backup', 'Pete\PeteApi\Http\PeteApiController@restore_site_from_backup')->middleware(['web']);
+Route::post('/apipete/download_site_from_backup', 'Pete\PeteApi\Http\PeteApiController@download_site_from_backup')->middleware(['web']);
+Route::post('/apipete/set_backup_days', 'Pete\PeteApi\Http\PeteApiController@set_backup_days')->middleware(['web']);
+Route::post('/apipete/create_site', 'Pete\PeteApi\Http\PeteApiController@create_site')->middleware(['web']);
+Route::post('/apipete/pete_mod', 'Pete\PeteApi\Http\PeteApiController@pete_mod')->middleware(['web']);
+Route::post('/apipete/get_server_info', 'Pete\PeteApi\Http\PeteApiController@get_server_info')->middleware(['web']);
+Route::post('/apipete/snapshot_creation_site', 'Pete\PeteApi\Http\PeteApiController@snapshot_creation_site')->middleware(['web']);
+Route::post('/apipete/restore_from_snapshot', 'Pete\PeteApi\Http\PeteApiController@restore_from_snapshot')->middleware(['web']);
+Route::post('/apipete/list_snapshots', 'Pete\PeteApi\Http\PeteApiController@list_snapshots')->middleware(['web']);
+Route::post('/apipete/restore_site_from_snapshot', 'Pete\PeteApi\Http\PeteApiController@restore_site_from_snapshot')->middleware(['web']);
+Route::post('/apipete/get_first_password', 'Pete\PeteApi\Http\PeteApiController@get_first_password')->middleware(['web']);
+Route::post('/apipete/create_shared_user', 'Pete\PeteApi\Http\PeteApiController@create_shared_user')->middleware(['web']);
+Route::post('/apipete/list_backups', 'Pete\PeteApi\Http\PeteApiController@list_backups')->middleware(['web']);
+Route::post('/apipete/delete_backup', 'Pete\PeteApi\Http\PeteApiController@delete_backup')->middleware(['web']);
+Route::post('/apipete/list_sites', 'Pete\PeteApi\Http\PeteApiController@list_sites')->middleware(['web']);
+Route::post('/apipete/list_trash', 'Pete\PeteApi\Http\PeteApiController@list_trash')->middleware(['web']);
+Route::post('/apipete/suspend_service', 'Pete\PeteApi\Http\PeteApiController@suspend_service')->middleware(['web']);
+Route::post('/apipete/activate_service', 'Pete\PeteApi\Http\PeteApiController@activate_service')->middleware(['web']);
