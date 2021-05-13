@@ -60,7 +60,8 @@ class PeteApiController extends Controller {
 	public function create_site(){
 			
 		if(isset($this->user)){
-			
+		
+		$pete_options = new PeteOption();
 		$wp_user = Input::get('wp_user');
 		$db_root_pass = env('ROOT_PASS');
 		$user_email = Input::get('email');
@@ -92,8 +93,19 @@ class PeteApiController extends Controller {
 		$new_site->import_wordpress(Input::get('theme_file'),["db_name" => $db_name, "db_user" => $db_user, "db_user_pass" => $db_user_pass]);
 		Log::info("check 3");
 		
+		$os_distribution = $pete_options->get_meta_value('os_distribution');
+		
+		if ($os_distribution=="docker") {
+			
+			$host = 'mysql';
+			$db_user = "root";
+			$db_user_pass = env('PETE_ROOT_PASS');
+		}else{
+			$host = 'localhost';
+		}
+		
 		//CREATE ADMIN USER WITH FIRST PASSWORD
-		$conn=mysqli_connect("localhost",$db_user,$db_user_pass,$db_name);
+		$conn=mysqli_connect($host,$db_user,$db_user_pass,$db_name);
 		// Check connection
 		if (mysqli_connect_errno())
 		  {
