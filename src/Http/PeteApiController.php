@@ -663,6 +663,30 @@ class PeteApiController extends Controller {
 				$os_v_dialog = shell_exec('lsb_release -a | grep Description');
 				$os_v_dialog = preg_replace("/Description:\s+/", "", $os_v_dialog);
 				
+			}else if($os_distribution == "docker"){
+				
+				if($this->user->admin != true){
+					$disk_total_size = "5 GB";
+					$disk_used = "1 GB";
+					$disk_free = "4 GB";
+				}else{
+					$aux = shell_exec("df -h | grep overlay");
+					$array = explode("  ", $aux);
+					$disk_total_size = $array[4];
+					$disk_used = $array[5];
+					$disk_free = $array[6];
+				}
+				
+   				$apache_v_dialog = shell_exec('apache2 -v | grep version');
+				$apache_v_dialog = preg_replace("/Server version:\s+/", "", $apache_v_dialog);
+				
+   				$php_v_dialog = shell_exec('php -r "echo phpversion();"');
+				$php_v_dialog = "PHP: ".substr($php_v_dialog, 0, 6);
+				
+   				$mysql_v_dialog = shell_exec('mysql -V');
+				
+				$os_v_dialog = shell_exec('lsb_release -a | grep Description');
+				$os_v_dialog = preg_replace("/Description:\s+/", "", $os_v_dialog);
 			}
 			
 			$time = Carbon::now();
