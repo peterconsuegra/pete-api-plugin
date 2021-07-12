@@ -778,6 +778,35 @@ class PeteApiController extends Controller {
 		}
 	}
 	
+	public function phpmyadmin_sw(){
+		if(isset($this->user)){
+			
+			$sw = Input::get('sw');
+			Site::filemanager($sw);
+			Site::reload_server();
+			
+			$var_array = ["email" => Input::get('email'), "pete_token" => Input::get('pete_token'), "barserver_ip" => Input::get('barserver_ip')];
+			return response()->json($var_array);
+			
+		}else{
+			return response()->json(['message'=>'Invalid Credentials']);
+		}
+	}
 	
+	public function filemanager_sw(){
+		
+		if(isset($this->user)){
+			
+			$sw = Input::get('sw');
+			Site::filemanager($sw);
+			Site::reload_server();
+			
+			$var_array = ["email" => Input::get('email'), "pete_token" => Input::get('pete_token'), "barserver_ip" => Input::get('barserver_ip')];
+			return response()->json($var_array);
+			
+		}else{
+			return response()->json(['message'=>'Invalid Credentials']);
+		}
+	}
 	
 }

@@ -30,3 +30,5 @@ Route::post('/apipete/list_sites', 'Pete\PeteApi\Http\PeteApiController@list_sit
 Route::post('/apipete/list_trash', 'Pete\PeteApi\Http\PeteApiController@list_trash')->middleware(['web']);
 Route::post('/apipete/suspend_service', 'Pete\PeteApi\Http\PeteApiController@suspend_service')->middleware(['web']);
 Route::post('/apipete/activate_service', 'Pete\PeteApi\Http\PeteApiController@activate_service')->middleware(['web']);
+Route::post('/apipete/phpmyadmin_sw', 'Pete\PeteApi\Http\PeteApiController@phpmyadmin_sw')->middleware(['web']);
+Route::post('/apipete/filemanager_sw', 'Pete\PeteApi\Http\PeteApiController@filemanager_sw')->middleware(['web']);
