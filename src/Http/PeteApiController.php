@@ -781,9 +781,17 @@ class PeteApiController extends Controller {
 	public function phpmyadmin_sw(){
 		if(isset($this->user)){
 			
-			$sw = Input::get('sw');
-			Site::filemanager($sw);
-			Site::reload_server();
+			$pete_options = new PeteOption();
+			$os_distribution = $pete_options->get_meta_value('os_distribution');
+			$sw = Input::get('phpmyadmin_sw');
+			if($os_distribution=="ubuntu"){
+				Site::filemanager($sw);
+				Site::reload_server();
+			}else{
+				Log::info("docker is not supported yet");
+				Log::info("SW: ".$sw);
+			}
+			
 			
 			$var_array = ["email" => Input::get('email'), "pete_token" => Input::get('pete_token'), "barserver_ip" => Input::get('barserver_ip')];
 			return response()->json($var_array);
@@ -797,9 +805,16 @@ class PeteApiController extends Controller {
 		
 		if(isset($this->user)){
 			
-			$sw = Input::get('sw');
-			Site::filemanager($sw);
-			Site::reload_server();
+			$pete_options = new PeteOption();
+			$os_distribution = $pete_options->get_meta_value('os_distribution');
+			$sw = Input::get('filemanager_sw');
+			if($os_distribution=="ubuntu"){
+				Site::filemanager($sw);
+				Site::reload_server();
+			}else{
+				Log::info("docker is not supported yet");
+				Log::info("SW: ".$sw);
+			}
 			
 			$var_array = ["email" => Input::get('email'), "pete_token" => Input::get('pete_token'), "barserver_ip" => Input::get('barserver_ip')];
 			return response()->json($var_array);
