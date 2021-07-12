@@ -785,7 +785,7 @@ class PeteApiController extends Controller {
 			$os_distribution = $pete_options->get_meta_value('os_distribution');
 			$sw = Input::get('phpmyadmin_sw');
 			if($os_distribution=="ubuntu"){
-				Site::filemanager($sw);
+				Site::phpmyadmin($sw);
 				Site::reload_server();
 			}else{
 				Log::info("docker is not supported yet");
