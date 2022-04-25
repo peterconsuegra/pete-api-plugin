@@ -27,6 +27,7 @@ Route::post('/apipete/create_shared_user', 'Pete\PeteApi\Http\PeteApiController@
 Route::post('/apipete/list_backups', 'Pete\PeteApi\Http\PeteApiController@list_backups')->middleware(['web']);
 Route::post('/apipete/delete_backup', 'Pete\PeteApi\Http\PeteApiController@delete_backup')->middleware(['web']);
 Route::post('/apipete/list_sites', 'Pete\PeteApi\Http\PeteApiController@list_sites')->middleware(['web']);
+Route::post('/apipete/list_staging_sites', 'Pete\PeteApi\Http\PeteApiController@list_staging_sites')->middleware(['web']);
 Route::post('/apipete/list_trash', 'Pete\PeteApi\Http\PeteApiController@list_trash')->middleware(['web']);
 Route::post('/apipete/suspend_service', 'Pete\PeteApi\Http\PeteApiController@suspend_service')->middleware(['web']);
 Route::post('/apipete/activate_service', 'Pete\PeteApi\Http\PeteApiController@activate_service')->middleware(['web']);

@@ -282,17 +282,25 @@ class PeteApiController extends Controller {
 	public function restore_site_from_backup(){
 		if(isset($this->user)){
 			
+			$url = Input::get('subdomain');
 			$backup_id = Input::get('backup_id');			
 			$backup = Backup::findOrFail(Input::get('backup_id'));
-			$pete_options = new PeteOption();
+			
+			if(Input::get('backup_action') == "restore_to_domain"){
+				$current_site = Site::findOrFail($backup->site_id);
+				$url = $current_site->url;
+				$current_site->delete_wordpress();
+				$current_site->delete();
+			}
+			
 			$base_path = base_path();
 			$backup_file = $base_path."/backups/$backup->site_id/".$backup->file_name;	
 					
 			$new_site = new Site();
 			$new_site->barsite_id = Input::get('barsite_id');
 			$new_site->action_name = "Restore";
-			$new_site->name = Input::get('subdomain_prefix');
-			$new_site->url = Input::get('subdomain');
+			$new_site->url = $url;
+			$new_site->set_project_name($url);
 			$new_site->wp_user = $backup->wp_user;
 			$new_site->theme = $backup->theme;
 			$new_site->user_id = $this->user->id;
@@ -531,7 +539,15 @@ class PeteApiController extends Controller {
 	public function list_sites(){
 		if(isset($this->user)){
 			
-			$sites = $this->user->my_sites()->get();
+			Log::info("HI! list_sites");
+			Log::info(Input::get('live_sites'));
+			
+			$live_sites= Input::get('live_sites');
+			if($live_sites =="true")
+				$sites = $this->user->list_live_sites()->get();
+			else
+				$sites = $this->user->list_staging_sites()->get();
+			
 			$time = Carbon::now();
 			$server_time = $time->format('Y/m/d H:i:s');
 				
